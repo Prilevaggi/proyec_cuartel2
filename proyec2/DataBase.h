@@ -6,21 +6,24 @@ using namespace std;
 
 ref class DataBase
 {
+
 private:
 	MySqlConnection^ coneccion;
 	String^ user;
-	String^ pass;
-	String^ seccion;
+
 public:
 	DataBase();
 	String^ connectionString;
 	bool loguin(String^,String^);
-	String^ nombre(String^);
-	String^ tomarSeccion(String^, String^);
+	DataRow^ nombre(String^);
+	DataRow^ apellido(String^);
+	DataRow^ jerarquia(String^);
+	DataRow^ tomarSeccion(String^);
 	void abrirConection();
 	void cerrarConection();
-	DataTable^ guardiaSeccion();
-	void insertGuardia(String^);
+	DataTable^ guardiaSeccion(String^);
+	DataTable^ guardiasAnteriores(String^);
+	void insertGuardia(String^,String^, String^, String^);
 	void eliminarCarga();
 
 

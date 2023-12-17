@@ -153,6 +153,7 @@
     <ClInclude Include="guardias.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="logueo.h" />
     <ClInclude Include="menuPrincipal.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -169,6 +170,7 @@
     <ClCompile Include="DataBase.cpp" />
     <ClCompile Include="Form1.cpp" />
     <ClCompile Include="guardias.cpp" />
+    <ClCompile Include="logueo.cpp" />
     <ClCompile Include="menuPrincipal.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

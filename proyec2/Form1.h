@@ -1,8 +1,10 @@
 #pragma once
 #include "menuPrincipal.h"
-#include "DataBase.h"
+#include "logueo.h"
+
 
 namespace CppCLRWinformsProjekt {
+
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -10,13 +12,16 @@ namespace CppCLRWinformsProjekt {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace MySql::Data::MySqlClient;
+
 
 
 	/// <summary>
 	/// Zusammenfassung f�r Form1
 	/// </summary>
-	public ref class Form1 : public System::Windows::Forms::Form
+public ref class Form1 : public System::Windows::Forms::Form
 	{
+	
 	public:
 		Form1(void)
 		{
@@ -119,6 +124,7 @@ namespace CppCLRWinformsProjekt {
 			this->contraseña->Name = L"contraseña";
 			this->contraseña->Size = System::Drawing::Size(217, 22);
 			this->contraseña->TabIndex = 4;
+			
 			// 
 			// Form1
 			// 
@@ -137,14 +143,16 @@ namespace CppCLRWinformsProjekt {
 			this->PerformLayout();
 
 		}
+
+
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		if (usuario->Text != "" && contraseña->Text != "") {
 			String^ us = usuario->Text;
 			String^ con = contraseña->Text;
-			DataBase^ user = gcnew DataBase();
-			user->abrirConection();
+			logueo^ user = gcnew logueo();
+			user->abrirConeccion();
 			bool log = user->loguin(us, con);
 			if (log) {
 				proyec2::menuPrincipal^ menu = gcnew proyec2::menuPrincipal(us, con);
@@ -157,7 +165,7 @@ namespace CppCLRWinformsProjekt {
 			}
 			else
 				MessageBox::Show("Usuario Incorrecto");
-			user->cerrarConection();
+			user->cerrarConeccion();
 		}
 		else MessageBox::Show("Complete Campos");
 
@@ -166,5 +174,7 @@ namespace CppCLRWinformsProjekt {
 
 
 	
+
+
 };
 }

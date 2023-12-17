@@ -23,27 +23,32 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class proyec2.cargarGuardia: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class proyec2.proyec2.guardias: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  Fields:
+    Int32 guardar : Public
+    System.Windows.Forms.TextBox text_dia : Public
+    System.Windows.Forms.TextBox text_entrada : Public
+    System.Windows.Forms.TextBox text_salida : Public
+    System.Windows.Forms.TextBox text_mes : Public
+Class proyec2.guardias: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class proyec2.proyec2.servicios: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class proyec2.proyec2.cargarGuardia: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  Fields:
+    Int32 init : Public
+    Int32 ant : Public
+    System.Windows.Forms.DataGridView dataGuardias : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.LinkLabel linkinicio : Public
+    System.ComponentModel.Container components : Public
+  Methods:
+    InitializeComponent(): PrivateScope, Public, HideBySig
+Class proyec2.servicios: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class proyec2.menuPrincipal: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Fields:
-    System.String user : Public
-    System.String pass : Public
+  Methods:
+    mostrarusuario(): PrivateScope, Public, HideBySig
 Class CppCLRWinformsProjekt.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class proyec2.guardias: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class proyec2.servicios: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

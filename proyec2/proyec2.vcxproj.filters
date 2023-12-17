@@ -44,6 +44,9 @@
     <ClInclude Include="DataBase.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="logueo.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -71,6 +74,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="DataBase.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="logueo.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
