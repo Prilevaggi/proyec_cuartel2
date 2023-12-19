@@ -1,8 +1,12 @@
 ﻿#pragma once
+
 #include "guardias.h"
 #include "servicios.h"
 #include "cargarGuardia.h"
+#include "Tareas.h"
+#include "nuevoServicio.h"
 #include "DataBase.h"
+
 
 
 
@@ -23,9 +27,7 @@ namespace proyec2 {
 	public ref class menuPrincipal : public System::Windows::Forms::Form
 	{
 
-	private:
-		DataBase^ db;
-		String^ pass;
+
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Panel^ panel1;
@@ -33,26 +35,27 @@ namespace proyec2 {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
-		   String^ user;
+	private: System::Windows::Forms::Panel^ panel_contenedor;
 
 
 
 
-
-
-
-
-
+	private: System::Windows::Forms::Button^ button4;
 
 	public:
+		
+		String^ user;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::DataGridView^ dataInicio;
+	public:
 
-
+	public:  
 		menuPrincipal(String^ user, String^ pass)
 		{
 			InitializeComponent();
 			this->user = user;
-			this->pass = pass;
 			this->db = gcnew DataBase();
+		
 		}
 
 	protected:
@@ -66,7 +69,8 @@ namespace proyec2 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Panel^ panel_contenedor;
+	private: DataBase^ db;
+
 	protected:
 	private: System::Windows::Forms::Panel^ panel_margen;
 	private: System::Windows::Forms::Button^ guardias;
@@ -90,10 +94,12 @@ namespace proyec2 {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(menuPrincipal::typeid));
-			this->panel_contenedor = (gcnew System::Windows::Forms::Panel());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->panel_margen = (gcnew System::Windows::Forms::Panel());
 			this->guardias = (gcnew System::Windows::Forms::Button());
 			this->panel_lateral = (gcnew System::Windows::Forms::Panel());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
@@ -105,18 +111,14 @@ namespace proyec2 {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->panel_contenedor = (gcnew System::Windows::Forms::Panel());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->dataInicio = (gcnew System::Windows::Forms::DataGridView());
 			this->panel_lateral->SuspendLayout();
 			this->panel2->SuspendLayout();
+			this->panel_contenedor->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataInicio))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// panel_contenedor
-			// 
-			this->panel_contenedor->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->panel_contenedor->Location = System::Drawing::Point(200, 69);
-			this->panel_contenedor->Name = L"panel_contenedor";
-			this->panel_contenedor->Size = System::Drawing::Size(608, 380);
-			this->panel_contenedor->TabIndex = 1;
-			this->panel_contenedor->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &menuPrincipal::panel_contenedor_Paint);
 			// 
 			// panel_margen
 			// 
@@ -143,6 +145,7 @@ namespace proyec2 {
 			// 
 			// panel_lateral
 			// 
+			this->panel_lateral->Controls->Add(this->button4);
 			this->panel_lateral->Controls->Add(this->linkLabel1);
 			this->panel_lateral->Controls->Add(this->button3);
 			this->panel_lateral->Controls->Add(this->button2);
@@ -155,9 +158,23 @@ namespace proyec2 {
 			this->panel_lateral->Size = System::Drawing::Size(200, 449);
 			this->panel_lateral->TabIndex = 0;
 			// 
+			// button4
+			// 
+			this->button4->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button4->Dock = System::Windows::Forms::DockStyle::Top;
+			this->button4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button4->Location = System::Drawing::Point(0, 338);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(200, 39);
+			this->button4->TabIndex = 6;
+			this->button4->Text = L"TAREAS";
+			this->button4->UseVisualStyleBackColor = true;
+			// 
 			// linkLabel1
 			// 
 			this->linkLabel1->AutoSize = true;
+			this->linkLabel1->LinkColor = System::Drawing::Color::Silver;
 			this->linkLabel1->Location = System::Drawing::Point(59, 423);
 			this->linkLabel1->Name = L"linkLabel1";
 			this->linkLabel1->Size = System::Drawing::Size(69, 17);
@@ -220,8 +237,9 @@ namespace proyec2 {
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel2->Location = System::Drawing::Point(200, 0);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(608, 63);
+			this->panel2->Size = System::Drawing::Size(859, 68);
 			this->panel2->TabIndex = 2;
+			this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &menuPrincipal::panel2_Paint);
 			// 
 			// label4
 			// 
@@ -229,7 +247,7 @@ namespace proyec2 {
 			this->label4->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->label4->Location = System::Drawing::Point(449, 27);
+			this->label4->Location = System::Drawing::Point(699, 32);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(82, 23);
 			this->label4->TabIndex = 8;
@@ -260,7 +278,7 @@ namespace proyec2 {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(90, 32);
+			this->label3->Location = System::Drawing::Point(111, 37);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(12, 18);
 			this->label3->TabIndex = 7;
@@ -271,7 +289,7 @@ namespace proyec2 {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(134, 32);
+			this->label1->Location = System::Drawing::Point(155, 37);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(12, 18);
 			this->label1->TabIndex = 5;
@@ -289,15 +307,81 @@ namespace proyec2 {
 			this->label2->TabIndex = 6;
 			this->label2->Text = L"label2";
 			// 
+			// panel_contenedor
+			// 
+			this->panel_contenedor->Controls->Add(this->label6);
+			this->panel_contenedor->Controls->Add(this->dataInicio);
+			this->panel_contenedor->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->panel_contenedor->Location = System::Drawing::Point(200, 69);
+			this->panel_contenedor->Name = L"panel_contenedor";
+			this->panel_contenedor->Size = System::Drawing::Size(859, 380);
+			this->panel_contenedor->TabIndex = 3;
+			this->panel_contenedor->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &menuPrincipal::panel_contenedor_Paint);
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->label6->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->label6->Location = System::Drawing::Point(303, 24);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(207, 25);
+			this->label6->TabIndex = 7;
+			this->label6->Text = L"Anuncios Generales";
+			// 
+			// dataInicio
+			// 
+			this->dataInicio->AllowUserToDeleteRows = false;
+			this->dataInicio->AllowUserToResizeColumns = false;
+			this->dataInicio->AllowUserToResizeRows = false;
+			this->dataInicio->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->dataInicio->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
+			this->dataInicio->BackgroundColor = System::Drawing::Color::White;
+			this->dataInicio->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->dataInicio->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
+			this->dataInicio->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
+			this->dataInicio->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataInicio->ColumnHeadersVisible = false;
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle1->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle1->NullValue = L"50";
+			dataGridViewCellStyle1->Padding = System::Windows::Forms::Padding(50);
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataInicio->DefaultCellStyle = dataGridViewCellStyle1;
+			this->dataInicio->Location = System::Drawing::Point(47, 52);
+			this->dataInicio->Name = L"dataInicio";
+			this->dataInicio->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataInicio->RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			this->dataInicio->RowHeadersVisible = false;
+			this->dataInicio->RowHeadersWidth = 51;
+			this->dataInicio->RowTemplate->Height = 24;
+			this->dataInicio->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->dataInicio->Size = System::Drawing::Size(764, 305);
+			this->dataInicio->TabIndex = 6;
+			// 
 			// menuPrincipal
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->ClientSize = System::Drawing::Size(808, 449);
-			this->Controls->Add(this->panel2);
+			this->ClientSize = System::Drawing::Size(1059, 449);
 			this->Controls->Add(this->panel_contenedor);
+			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel_lateral);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"menuPrincipal";
@@ -306,6 +390,9 @@ namespace proyec2 {
 			this->panel_lateral->PerformLayout();
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
+			this->panel_contenedor->ResumeLayout(false);
+			this->panel_contenedor->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataInicio))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -323,106 +410,71 @@ namespace proyec2 {
 		}
 
 
-
+		
 
 
 
 
 	private: System::Void guardias_Click(System::Object^ sender, System::EventArgs^ e) {
-		if ((this->panel_contenedor->Controls->Count) > 0)
-			this->panel_contenedor->Controls->RemoveAt(0);
-		proyec2::guardias^ ventana1 = gcnew proyec2::guardias();
-		ventana1->TopLevel = false;
-		ventana1->Dock = DockStyle::Fill;
-		this->panel_contenedor->Controls->Add(ventana1);
-		this->panel_contenedor->Tag = ventana1;
-		this->db->abrirConection();
-		//ventana1->bi
-		ventana1->dataGuardias->DataSource = this->db->guardiaSeccion(this->user);
-		//ajustar tabla al datagrid
-
-		ventana1->Show();
-		this->db->cerrarConection();
-		if (ventana1->ant == 1) {
-			ventana1->Hide();
-			this->db->abrirConection();
-			ventana1->dataGuardias->DataSource = this->db->guardiasAnteriores(this->user);
-			ventana1->Show();
-			this->db->cerrarConection();
-		}
-		if (ventana1->init == 1) {
-			ventana1->Close();
-			this->Visible = true;
-		}
+		this->abrirPanel(gcnew proyec2::guardias(this->user));
+		
 	}
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		if ((this->panel_contenedor->Controls->Count) > 0)
-			this->panel_contenedor->Controls->RemoveAt(0);
-		proyec2::cargarGuardia^ ventana1 = gcnew proyec2::cargarGuardia();
-		ventana1->TopLevel = false;
-		ventana1->Dock = DockStyle::Fill;
-		this->panel_contenedor->Controls->Add(ventana1);
-		this->panel_contenedor->Tag = ventana1;
-		ventana1->Show();
-		if (ventana1->guardar == 1) {
-			String^ fecha = "2023-" + ventana1->text_mes->Text + "-" + ventana1->text_dia->Text;
-			String^ entrada = ventana1->text_entrada->Text + ":00:00";
-			String^ salida = ventana1->text_salida->Text + ":00:00";
-			try {
-
-				this->db->abrirConection();
-				this->db->insertGuardia(user, fecha, entrada, salida);
-				this->db->cerrarConection();
-				MessageBox::Show("Se registro su guardia correctamente", "Nuevo registro", MessageBoxButtons::OK, MessageBoxIcon::Information);
-
-			}
-			catch (Exception^ e) {
-				
-				MessageBox::Show("No se pudo realizar el registro", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-
-			}
-		;
-		}
+		this->abrirPanel(gcnew proyec2::cargarGuardia(this->user));
 
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->abrirPanel(gcnew proyec2::servicios);
+		this->abrirPanel(gcnew proyec2::servicios(this->user));
+		
 	}
 
-private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+	private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
 
-	if (MessageBox::Show("Estas seguro?", "Cerrar Sesion", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
+		if (MessageBox::Show("Estas seguro?", "Cerrar Sesion", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes) {
 
-		this->Visible = false;
+			this->Visible = false;
+		}
 	}
-}
-
-
-	private: System::Void panel_contenedor_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-		this->mostrarusuario();
 	
+
+	private: System::Void panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+		this->mostrarusuario();
+	}
+
+	public:void mostrarusuario() {
+
+		this->db->abrirConection();
+		DataRow^ result = db->nombre(user);
+		String^ nombre = result["nombre"]->ToString();
+		label5->Text = nombre;
+		DataRow^ result2 = db->apellido(user);
+		String^ apellido = result2["apellido"]->ToString();
+		label2->Text = apellido;
+		DataRow^ result3 = db->jerarquia(user);
+		String^ jerarquia = result3["jerarquia"]->ToString();
+		label3->Text = jerarquia;
+		DataRow^ result4 = db->tomarSeccion(user);
+		String^ seccion = result4["seccion"]->ToString();
+		label4->Text = seccion;
+		this->db->cerrarConection();
+
+	}
+	   
+
+
+
+private: System::Void panel_contenedor_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	vista();
+
 }
 
-		 public:void mostrarusuario() {
-			this->db->abrirConection();
-			  DataRow^ result = db->nombre(user);
-			  String^ nombre = result["nombre"]->ToString(); 
-			  label5->Text = nombre;
-			  DataRow^ result2 = db->apellido(user);
-			  String^ apellido = result2["apellido"]->ToString();
-			  label2->Text = apellido;
-			  DataRow^ result3 = db->jerarquia(user);
-			  String^ jerarquia = result3["jerarquia"]->ToString();
-			  label3->Text = jerarquia;
-			  DataRow^ result4 = db->tomarSeccion(user);
-			  String^ seccion = result4["seccion"]->ToString(); 
-			  label4->Text = seccion;
-			   this->db->cerrarConection();
-
-		   }
-
+		public: void vista() {
 			
-
+			this->db->abrirConection();
+			this->dataInicio->DataSource = this->db->mostrarAnuncios();
+			this->db->cerrarConection();
+		}
+	  
 };
 }

@@ -143,6 +143,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="anuncios.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="cargarGuardia.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -157,13 +160,20 @@
     <ClInclude Include="menuPrincipal.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="nuevoServicio.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="servicios.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Tareas.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="anuncios.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="cargarGuardia.cpp" />
     <ClCompile Include="CppCLR_WinformsProjekt.cpp" />
@@ -172,6 +182,7 @@
     <ClCompile Include="guardias.cpp" />
     <ClCompile Include="logueo.cpp" />
     <ClCompile Include="menuPrincipal.cpp" />
+    <ClCompile Include="nuevoServicio.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -179,6 +190,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="servicios.cpp" />
+    <ClCompile Include="Tareas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
@@ -194,6 +206,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="anuncios.resx">
+      <DependentUpon>anuncios.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="cargarGuardia.resx">
       <DependentUpon>cargarGuardia.h</DependentUpon>
     </EmbeddedResource>
@@ -206,8 +221,14 @@
     <EmbeddedResource Include="menuPrincipal.resx">
       <DependentUpon>menuPrincipal.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="nuevoServicio.resx">
+      <DependentUpon>nuevoServicio.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="servicios.resx">
       <DependentUpon>servicios.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tareas.resx">
+      <DependentUpon>Tareas.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

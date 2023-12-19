@@ -1,9 +1,5 @@
 ﻿  CppCLR_WinformsProjekt.cpp
-C:\Users\prile\source\repos\proyec2\menuPrincipal.h(380,22): warning C4101: 'e': variable local sin referencia
-  DataBase.cpp
-C:\Users\prile\source\repos\proyec2\DataBase.cpp(108,22): warning C4101: 'e': variable local sin referencia
   menuPrincipal.cpp
-C:\Users\prile\source\repos\proyec2\menuPrincipal.h(380,22): warning C4101: 'e': variable local sin referencia
   Generando código...
-  AssemblyInfo.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  anuncios.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
   proyec2.vcxproj -> C:\Users\prile\source\repos\proyec2\Debug\proyec2.exe

@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include"DataBase.h"
+
 
 
 namespace proyec2 {
@@ -16,17 +18,14 @@ namespace proyec2 {
 	public ref class guardias : public System::Windows::Forms::Form
 	{
 
-	
-	private: System::Windows::Forms::Button^ button2;
- 
+	 
 		   
 	public:
-		int init;
-		int ant;
-		guardias(void)
+		String^ user;
+		guardias(String^ user)
 		{
-			this->init;
-			this->ant;
+			this->user = user;
+			this->db= gcnew DataBase();
 			InitializeComponent();
 		}
 
@@ -43,11 +42,15 @@ namespace proyec2 {
 		}
 	protected:
 	public:
-		System::Windows::Forms::DataGridView^ dataGuardias;	
-        System::Windows::Forms::Label^ label1;
-	    System::Windows::Forms::LinkLabel^ linkinicio;
-	private: System::Windows::Forms::Button^ button1;
-	public:
+		     
+		     System::Windows::Forms::DataGridView^ dataGuardias;	
+             System::Windows::Forms::Label^ label1;
+	         System::Windows::Forms::LinkLabel^ linkinicio;
+	private:
+		DataBase^ db;
+		System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
+	private:
 
 
 		/// <summary>
@@ -62,6 +65,9 @@ namespace proyec2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->dataGuardias = (gcnew System::Windows::Forms::DataGridView());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->linkinicio = (gcnew System::Windows::Forms::LinkLabel());
@@ -72,12 +78,45 @@ namespace proyec2 {
 			// 
 			// dataGuardias
 			// 
+			this->dataGuardias->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->dataGuardias->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(254)));
+			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::PaleTurquoise;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::ControlDarkDark;
+			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGuardias->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this->dataGuardias->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Nirmala UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::ControlText;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::ControlDarkDark;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->dataGuardias->DefaultCellStyle = dataGridViewCellStyle2;
 			this->dataGuardias->Location = System::Drawing::Point(39, 50);
 			this->dataGuardias->Name = L"dataGuardias";
+			this->dataGuardias->ReadOnly = true;
+			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle3->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle3->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle3->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGuardias->RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			this->dataGuardias->RowHeadersVisible = false;
 			this->dataGuardias->RowHeadersWidth = 51;
 			this->dataGuardias->RowTemplate->Height = 24;
-			this->dataGuardias->Size = System::Drawing::Size(519, 237);
+			this->dataGuardias->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->dataGuardias->Size = System::Drawing::Size(753, 237);
 			this->dataGuardias->TabIndex = 0;
 			// 
 			// label1
@@ -104,7 +143,7 @@ namespace proyec2 {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(405, 328);
+			this->button1->Location = System::Drawing::Point(669, 328);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(106, 23);
 			this->button1->TabIndex = 3;
@@ -128,7 +167,7 @@ namespace proyec2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->ClientSize = System::Drawing::Size(608, 380);
+			this->ClientSize = System::Drawing::Size(859, 380);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->linkinicio);
@@ -138,6 +177,7 @@ namespace proyec2 {
 			this->Name = L"guardias";
 			this->SizeGripStyle = System::Windows::Forms::SizeGripStyle::Show;
 			this->Text = L"guardias";
+			this->Load += gcnew System::EventHandler(this, &guardias::guardias_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGuardias))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -146,11 +186,27 @@ namespace proyec2 {
 #pragma endregion
 	
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->init = 1;
 	this->Close();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->ant=1;	
+	antGuardia();
 }
+
+	   
+private: System::Void guardias_Load(System::Object^ sender, System::EventArgs^ e) {
+	postGuardia();
+
+}
+	   public: void postGuardia() {
+		   this->db->abrirConection();
+		   this->dataGuardias->DataSource = this->db->guardiaSeccion(this->user);
+		   this->db->cerrarConection();
+	   }
+    	 public: void antGuardia() {
+				 this->db->abrirConection();
+				 this->dataGuardias->DataSource = this->db->guardiasAnteriores(this->user);
+				 this->db->cerrarConection();
+		}
+
 };
 }

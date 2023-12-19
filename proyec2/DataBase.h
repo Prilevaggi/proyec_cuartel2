@@ -9,9 +9,10 @@ ref class DataBase
 
 private:
 	MySqlConnection^ coneccion;
-	String^ user;
+	
 
 public:
+	String^ user;
 	DataBase();
 	String^ connectionString;
 	bool loguin(String^,String^);
@@ -23,8 +24,13 @@ public:
 	void cerrarConection();
 	DataTable^ guardiaSeccion(String^);
 	DataTable^ guardiasAnteriores(String^);
-	void insertGuardia(String^,String^, String^, String^);
+	void insertGuardia(String^ user,String^, String^, String^);
 	void eliminarCarga();
+	DataTable^ SERVICIOS(String^);
+	DataRow^ totalServicios(String^);
+	DataTable^ mostrarAnuncios();
+	DataTable^ mostrarTareas(String^);
+
 
 
 };

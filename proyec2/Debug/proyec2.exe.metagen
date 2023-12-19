@@ -1,8 +1,11 @@
+  proyec2.anuncios.resources - Embedded, ContainedInManifestFile, 
   proyec2.cargarGuardia.resources - Embedded, ContainedInManifestFile, 
   proyec2.Form1.resources - Embedded, ContainedInManifestFile, 
   proyec2.guardias.resources - Embedded, ContainedInManifestFile, 
   proyec2.menuPrincipal.resources - Embedded, ContainedInManifestFile, 
+  proyec2.nuevoServicio.resources - Embedded, ContainedInManifestFile, 
   proyec2.servicios.resources - Embedded, ContainedInManifestFile, 
+  proyec2.Tareas.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly proyec2, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
 	hash=SHA1, flags=PublicKey
@@ -20,35 +23,68 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
-Class proyec2.cargarGuardia: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class proyec2.anuncios: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    llenarInicio(): PrivateScope, Public, HideBySig
+Class proyec2.cargarGuardia: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     Int32 guardar : Public
+    System.String user : Public
+    System.String fecha : Public
+    System.String entrada : Public
+    System.String salida : Public
     System.Windows.Forms.TextBox text_dia : Public
     System.Windows.Forms.TextBox text_entrada : Public
     System.Windows.Forms.TextBox text_salida : Public
     System.Windows.Forms.TextBox text_mes : Public
+  Methods:
+    paseQuery(): PrivateScope, Public, HideBySig
+    carga(): PrivateScope, Public, HideBySig
+    limpiarVentana(): PrivateScope, Public, HideBySig
 Class proyec2.guardias: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    Int32 init : Public
-    Int32 ant : Public
+    System.String user : Public
     System.Windows.Forms.DataGridView dataGuardias : Public
     System.Windows.Forms.Label label1 : Public
     System.Windows.Forms.LinkLabel linkinicio : Public
-    System.ComponentModel.Container components : Public
   Methods:
-    InitializeComponent(): PrivateScope, Public, HideBySig
+    postGuardia(): PrivateScope, Public, HideBySig
+    antGuardia(): PrivateScope, Public, HideBySig
 Class proyec2.servicios: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String user : Public
+    System.String totalServicios : Public
+  Methods:
+    llenarData(): PrivateScope, Public, HideBySig
+    mostrarTotal(): PrivateScope, Public, HideBySig
+Class proyec2.Tareas: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String user : Public
+  Methods:
+    MostrarTareaSeccion(): PrivateScope, Public, HideBySig
+Class proyec2.nuevoServicio: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String user : Public
 Class proyec2.menuPrincipal: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String user : Public
   Methods:
     mostrarusuario(): PrivateScope, Public, HideBySig
+    vista(): PrivateScope, Public, HideBySig
 Class CppCLRWinformsProjekt.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

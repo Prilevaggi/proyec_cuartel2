@@ -47,6 +47,15 @@
     <ClInclude Include="logueo.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="nuevoServicio.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Tareas.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="anuncios.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -77,6 +86,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="logueo.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="nuevoServicio.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Tareas.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="anuncios.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

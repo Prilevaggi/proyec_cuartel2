@@ -11,3 +11,6 @@ C:\Users\prile\source\repos\proyec2\Debug\MySql.Data.dll
 C:\Users\prile\source\repos\proyec2\Debug\System.Memory.dll
 C:\Users\prile\source\repos\proyec2\Debug\System.Numerics.Vectors.dll
 C:\Users\prile\source\repos\proyec2\Debug\System.Buffers.dll
+C:\Users\prile\source\repos\proyec2\Debug\proyec2.nuevoServicio.resources
+C:\Users\prile\source\repos\proyec2\Debug\proyec2.Tareas.resources
+C:\Users\prile\source\repos\proyec2\Debug\proyec2.anuncios.resources
